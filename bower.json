@@ -1,0 +1,14 @@
+{
+  "name": "mooc",
+  "description": "mooc",
+  "license": "MIT",
+  "devDependencies": {
+    "angular-route":"1",
+    "jquery": "2",
+    "bootstrap": "3",
+    "angular": "1",
+    "moment": "2",
+    "underscore": "1",
+    "jquery-cookie": "1"
+  }
+}

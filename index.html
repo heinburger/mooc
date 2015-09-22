@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mooc">
+<head>
+	<!-- basic -->
+	<meta charset="utf-8">
+	<title>mooc</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- css -->
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="mooc.css">
+
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body ng-controller="moocCtrl">
+	<div id="header">
+		<p>search</p>
+	</div>
+	<input type="text" class="form-control translucent" placeholder="search..." ng-model="searchText">
+	<p>{{searchText}}</p>
+
+	<!-- ================================================== -->
+
+	<!-- javascript -->
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular-route/angular-route.min.js"></script>
+	<script src="js/mooc.js"></script>
+	<script src="js/controllers/moocCtrl.js"></script>
+	<script src="js/services/moocService.js"></script>
+</body>
+</html>
