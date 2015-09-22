@@ -9,6 +9,7 @@
     "angular": "1",
     "moment": "2",
     "underscore": "1",
-    "jquery-cookie": "1"
+    "jquery-cookie": "1",
+    "seiyria-bootstrap-slider":"5"
   }
 }

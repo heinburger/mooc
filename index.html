@@ -8,6 +8,7 @@
 
 	<!-- css -->
 	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css">
 	<link rel="stylesheet" href="mooc.css">
 
 	<!--[if lt IE 9]>
@@ -16,18 +17,22 @@
 	<![endif]-->
 </head>
 
-<body ng-controller="moocCtrl">
-	<div id="header">
-		<p>search</p>
+<body ng-controller="moocCtrl" class="ng-cloak">
+	<div class="container">
+		<div style="position:absolute; z-index:-1;">
+			<p style="color:#EEEEEE; font-weight:bold; font-size:110px; line-height:100px;">MOOC</p>
+		</div>
+		<div class="row margin-top">
+			<input type="text" class="form-control translucent" placeholder="search..." ng-model="searchText">
+			<input id="slider" data-slider-id='timeSlider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
+		</div>
 	</div>
-	<input type="text" class="form-control translucent" placeholder="search..." ng-model="searchText">
-	<p>{{searchText}}</p>
-
 	<!-- ================================================== -->
 
 	<!-- javascript -->
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js"></script>
 	<script src="bower_components/angular/angular.js"></script>
 	<script src="bower_components/angular-route/angular-route.min.js"></script>
 	<script src="js/mooc.js"></script>

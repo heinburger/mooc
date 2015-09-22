@@ -1,1 +1,7 @@
-html, body { height: 100%; }
+.ng-cloak { display: none; }
+
+.margin-top { margin-top:60px; }
+
+
+#timeSlider { width:100%; }
+#timeSlider .slider-selection { background: #8DB6CD; }
