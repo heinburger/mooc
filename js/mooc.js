@@ -1,5 +1,4 @@
 /*global angular */
-
 angular.module('mooc', ['ngRoute'])
   .config(function ($routeProvider) {
     'use strict';
@@ -16,3 +15,5 @@ angular.module('mooc', ['ngRoute'])
         redirectTo: '/'
       });
   });
+
+var debug = {};

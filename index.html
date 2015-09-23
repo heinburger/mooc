@@ -19,13 +19,16 @@
 
 <body ng-controller="moocCtrl" class="ng-cloak">
 	<div class="container">
-		<div style="position:absolute; z-index:-1;">
-			<p style="color:#EEEEEE; font-weight:bold; font-size:110px; line-height:100px;">MOOC</p>
-		</div>
 		<div class="row margin-top">
-			<input type="text" class="form-control translucent" placeholder="search..." ng-model="searchText">
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="search..." ng-model="searchText">
+		    	<span class="input-group-btn">
+		    		<button class="btn btn-default" type="button" ng-click="doSearch(searchText)"><span class="glyphicon glyphicon-search"></span></button>
+		    	</span>
+		    </div>
 			<input id="slider" data-slider-id='timeSlider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
 		</div>
+		<result-loop ng-repeat="result in results" result="result"></result-loop>
 	</div>
 	<!-- ================================================== -->
 
@@ -35,8 +38,11 @@
 	<script src="bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js"></script>
 	<script src="bower_components/angular/angular.js"></script>
 	<script src="bower_components/angular-route/angular-route.min.js"></script>
+	<script src="bower_components/underscore/underscore-min.js"></script>
 	<script src="js/mooc.js"></script>
+	<script src="js/services/khanService.js"></script>
 	<script src="js/controllers/moocCtrl.js"></script>
-	<script src="js/services/moocService.js"></script>
+	<script src="js/directives/resultDir.js"></script>
+	
 </body>
 </html>
