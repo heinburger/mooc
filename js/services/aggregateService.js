@@ -6,7 +6,7 @@ angular.module('mooc')
 		var promise; 
 		var agg = {};
 
-		
+		agg.filterDuration = 99999;
 		
 
 		//end service

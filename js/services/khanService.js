@@ -9,9 +9,9 @@ angular.module('mooc')
 			khan.tree = response.data;
 		});
 
-		khan.grabYoutubeUrl = function(id) {
+		khan.grabYoutubeInfo = function(id) {
 			return $http.get('http://www.khanacademy.org/api/v1/videos/'+id).then(function (response){
-				return response.data.url;
+				return { url:response.data.url, duration:response.data.duration };
 			});
 		};
 
@@ -22,15 +22,18 @@ angular.module('mooc')
 
 			var filterChildren = function (child) {
 				var nodeText = '';
-				//if (child.title) { nodeText += child.title.toLowerCase(); }  
+				//assemble the string to search over:
+				if (child.title)     { nodeText += child.title.toLowerCase(); }  
 				if (child.node_slug) { nodeText += child.node_slug.toLowerCase(); }  
-				if (child.keywords) { nodeText += child.keywords.toLowerCase(); }
+				if (child.keywords)  { nodeText += child.keywords.toLowerCase(); }
+
 				if (nodeText.indexOf(text) != -1) { 
 					var formattedResult = {
 						//khan specific stuff
 						title:child.title,
 						desc:child.description,
 						type:child.kind,
+						duration:false,
 						youtube:child.youtube_id
 					};
 					if (child.thumbnail_urls) { formattedResult.thumb = child.thumbnail_urls.filtered; }

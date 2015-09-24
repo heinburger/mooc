@@ -1,6 +1,6 @@
 /*global angular */
 angular.module('mooc')
-	.directive('resultLoop', function ($http, khan) {
+	.directive('resultLoop', function ($http, agg, khan) {
 		'use strict';
 
 		return {
@@ -11,7 +11,10 @@ angular.module('mooc')
 		    templateUrl: 'js/directives/templates/result.html',
 		    link: function(scope, element, attrs) {
 		    	if (scope.result.youtube) { 
-		    		khan.grabYoutubeUrl(scope.result.youtube).then(function (url){ scope.youtube = url; }); 
+		    		khan.grabYoutubeInfo(scope.result.youtube).then(function (info){ 
+		    			scope.youtube = info.url;
+		    			scope.result.duration = info.duration;
+		    		}); 
 		    	}
 		    }
 		};

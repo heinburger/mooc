@@ -19,16 +19,29 @@
 
 <body ng-controller="moocCtrl" class="ng-cloak">
 	<div class="container">
-		<div class="row margin-top">
+
+		<!--header-->
+		<div id="icons" class="row-fluid">
+			<img id="khan" class="header-icon" src="https://www.khanacademy.org/images/khan-logo-vertical-transparent.png" ng-click="addService('khan')">
+			<img id="youtube" class="header-icon grayscale" src="http://www.youtube.com/yt/brand/media/image/YouTube-logo-full_color.png" ng-click="addService('youtube')">
+			<img id="ted" class="header-icon grayscale" src="http://freshwetpaint.com/wp-content/uploads/2010/03/ted.png" ng-click="addService('ted')">
+		</div>
+		<div class="row">
 			<div class="input-group">
-				<input type="text" class="form-control" placeholder="search..." ng-model="searchText">
+				<input type="text" class="form-control" placeholder="search {{printServices()}}..." ng-model="searchText">
 		    	<span class="input-group-btn">
 		    		<button class="btn btn-default" type="button" ng-click="doSearch(searchText)"><span class="glyphicon glyphicon-search"></span></button>
 		    	</span>
 		    </div>
-			<input id="slider" data-slider-id='timeSlider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
+			<input id="slider" data-slider-id='timeSlider' type="text" data-slider-min="1" data-slider-max="30" data-slider-step="1" data-slider-value="12"/>
 		</div>
-		<result-loop ng-repeat="result in results" result="result"></result-loop>
+
+		<!--loop-->
+		<result-loop ng-repeat="result in results | filter: durationFilter()" result="result"></result-loop>
+
+
+
+
 	</div>
 	<!-- ================================================== -->
 
@@ -40,6 +53,7 @@
 	<script src="bower_components/angular-route/angular-route.min.js"></script>
 	<script src="bower_components/underscore/underscore-min.js"></script>
 	<script src="js/mooc.js"></script>
+	<script src="js/services/aggregateService.js"></script>
 	<script src="js/services/khanService.js"></script>
 	<script src="js/controllers/moocCtrl.js"></script>
 	<script src="js/directives/resultDir.js"></script>
