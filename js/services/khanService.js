@@ -9,18 +9,37 @@ angular.module('mooc')
 			khan.tree = response.data;
 		});
 
-		khan.search = function(rawText) {
-			var results = [];
+		khan.grabYoutubeUrl = function(id) {
+			return $http.get('http://www.khanacademy.org/api/v1/videos/'+id).then(function (response){
+				return response.data.url;
+			});
+		};
+
+		khan.search = function(rawText, video) {
+			var allResults = [];
+			var videoResults = [];
 			var text = rawText.toLowerCase();
-			console.log('khan search text: '+text)
 
 			var filterChildren = function (child) {
-				var result = {};
 				var nodeText = '';
-				
-				if (child.title) { nodeText += child.title.toLowerCase(); }  
+				//if (child.title) { nodeText += child.title.toLowerCase(); }  
 				if (child.node_slug) { nodeText += child.node_slug.toLowerCase(); }  
-				if (nodeText.indexOf(text) != -1) { results.push(result); console.log(nodeText)};
+				if (child.keywords) { nodeText += child.keywords.toLowerCase(); }
+				if (nodeText.indexOf(text) != -1) { 
+					var formattedResult = {
+						//khan specific stuff
+						title:child.title,
+						desc:child.description,
+						type:child.kind,
+						youtube:child.youtube_id
+					};
+					if (child.thumbnail_urls) { formattedResult.thumb = child.thumbnail_urls.filtered; }
+
+					allResults.push(formattedResult);
+					if (child.kind==='Video') { 
+						videoResults.push(formattedResult); 
+					}
+				}
 				if (child.children) { 
 					_(child.children).each(function (next){
 						filterChildren(next);
@@ -32,16 +51,10 @@ angular.module('mooc')
 				filterChildren(top);							
 			});
 
-
-			//BROKEN - this is not waiting for all the results.... promises or something
-			return results;
+			if (video) { return videoResults; }
+			else { return allResults; }
+			
 		};
-
-
-
-
-
-
 
 		//end service
 		return khan;

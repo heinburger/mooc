@@ -1,4 +1,10 @@
 <div class="row">
-	<h2>{{result.title}}</h2>
-	<p>{{result.description}}</p>
+	<div class="col-md-2" ng-if="result.thumb">
+		<a ng-href="{{youtube}}"><img class="img-thumbnail thumb-top" ng-show="result.thumb" ng-src="{{result.thumb}}"></a>
+	</div>
+	<div class="col-md-10">
+		<h2><span style="color:green">{{result.type}}</span> {{result.title}}</h2>
+		<h5 ng-show="result.youtube">youtube id: {{result.youtube}}</h5>
+		<p>{{result.desc}}</p>
+	</div>
 </div>
