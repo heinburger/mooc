@@ -1,6 +1,6 @@
 /*global angular */
 angular.module('mooc')
-	.controller('moocCtrl', function moocCtrl($scope, $routeParams, $filter, agg, khan) {
+	.controller('moocCtrl', function moocCtrl($scope, $routeParams, $filter, agg) {
 		'use strict';
 
 		//setup default
@@ -8,20 +8,21 @@ angular.module('mooc')
 		var noResult = [{title:'Nothing matches', desc:'try another search or ADD TO THE ENGINE'}];
 		
 		$scope.results = defaultResult;
-		$scope.services = ['khan'];
+		//default services
+		agg.services = ['khan'];
 
 		$scope.addService = function (service) {
-			if (_($scope.services).contains(service)) {
-                $scope.services = _($scope.services).without(service);
+			if (_(agg.services).contains(service)) {
+                agg.services = _(agg.services).without(service);
                 $('#'+service).addClass('grayscale');
             } else { 
-                $scope.services.push(service); 
+                agg.services.push(service); 
                 $('#'+service).removeClass('grayscale');
             }
 		};
 		$scope.printServices = function (){
-			if (!$scope.services.length) { return 'nothing'; }
-			return $scope.services.join(', ');
+			if (!agg.services.length) { return 'nothing'; }
+			return agg.services.join(', ');
 		};
 
 
@@ -48,11 +49,12 @@ angular.module('mooc')
 	    };
 
 		$scope.doSearch = function (text) {
-			//if (text!=='' && text!==undefined) {
-			var tempResults = [];
-			tempResults = khan.search(text,true);
-			if (!tempResults.length) { tempResults = noResult; }
-			angular.copy(tempResults, $scope.results);
+			$("#searchButton").html('<img src="loading.gif">');
+			agg.textSearch(text,{video:true}).then(function (response){
+				if (!response.length) { $scope.results = noResult; }
+				angular.copy(response, $scope.results);
+				$("#searchButton").html('<span class="glyphicon glyphicon-search"></span>');
+			});
 
 		};
 		

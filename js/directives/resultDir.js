@@ -10,11 +10,10 @@ angular.module('mooc')
 		    },
 		    templateUrl: 'js/directives/templates/result.html',
 		    link: function(scope, element, attrs) {
-		    	if (scope.result.youtube) { 
-		    		khan.grabYoutubeInfo(scope.result.youtube).then(function (info){ 
-		    			scope.youtube = info.url;
-		    			scope.result.duration = info.duration;
-		    		}); 
+		    	scope.time = function(duration) {
+		    		var minutes = Math.floor(duration/60);
+		    		var seconds = duration - minutes * 60;
+		    		return minutes+"m";
 		    	}
 		    }
 		};

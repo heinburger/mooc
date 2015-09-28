@@ -11,14 +11,20 @@ angular.module('mooc')
 
 		khan.grabYoutubeInfo = function(id) {
 			return $http.get('http://www.khanacademy.org/api/v1/videos/'+id).then(function (response){
-				return { url:response.data.url, duration:response.data.duration };
+				return {url:response.data.url, duration:response.data.duration };
 			});
+
 		};
 
-		khan.search = function(rawText, video) {
+		khan.textSearch = function(text, options) {
+			var khanPromise = $q.defer();
+			var promises = [];
+
+			console.log('khan service');
+
 			var allResults = [];
 			var videoResults = [];
-			var text = rawText.toLowerCase();
+			
 
 			var filterChildren = function (child) {
 				var nodeText = '';
@@ -30,6 +36,7 @@ angular.module('mooc')
 				if (nodeText.indexOf(text) != -1) { 
 					var formattedResult = {
 						//khan specific stuff
+						from:'khan',
 						title:child.title,
 						desc:child.description,
 						type:child.kind,
@@ -39,10 +46,21 @@ angular.module('mooc')
 					if (child.thumbnail_urls) { formattedResult.thumb = child.thumbnail_urls.filtered; }
 
 					allResults.push(formattedResult);
+
 					if (child.kind==='Video') { 
-						videoResults.push(formattedResult); 
+						if (formattedResult.youtube) { 
+							var youtubePromise = $q.defer();
+							promises.push(youtubePromise.promise);
+		    				khan.grabYoutubeInfo(formattedResult.youtube).then(function (info){ 
+		    					formattedResult.youtubeUrl = info.url;
+		    					formattedResult.duration = info.duration;
+		    					videoResults.push(formattedResult); 
+		    					youtubePromise.resolve()
+		    				}); 
+		    			}
 					}
 				}
+
 				if (child.children) { 
 					_(child.children).each(function (next){
 						filterChildren(next);
@@ -54,9 +72,12 @@ angular.module('mooc')
 				filterChildren(top);							
 			});
 
-			if (video) { return videoResults; }
-			else { return allResults; }
-			
+			$q.all(promises).then(function(){
+				if (options.video) { khanPromise.resolve(videoResults); }
+				else { khanPromise.resolve(allResults); }
+			});
+
+			return khanPromise.promise;
 		};
 
 		//end service

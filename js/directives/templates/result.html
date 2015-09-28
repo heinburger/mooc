@@ -1,10 +1,11 @@
 <div class="row">
 	<div class="col-md-2" ng-if="result.thumb">
-		<a ng-href="{{youtube}}"><img class="img-thumbnail thumb-top" ng-show="result.thumb" ng-src="{{result.thumb}}"></a>
+		<a ng-href="{{result.youtubeUrl}}"><img class="img-thumbnail thumb-top" ng-show="result.thumb" ng-src="{{result.thumb}}"></a>
 	</div>
 	<div class="col-md-10">
-		<h2><span style="color:green" ng-show="result.type==='Video'">{{result.type}} ({{result.duration}})</span> {{result.title}}</h2>
+		<h2><span style="color:green" ng-show="result.type==='Video'">{{result.type}} from {{result.from}} ({{time(result.duration)}})</span> {{result.title}}</h2>
 		<h5 ng-show="result.youtube">youtube id: {{result.youtube}}</h5>
+		<a ng-if="result.link" ng-href="{{result.link}}">{{result.link}}</a>
 		<p>{{result.desc}}</p>
 	</div>
 </div>
