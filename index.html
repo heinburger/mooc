@@ -39,7 +39,7 @@
 		</div>
 
 		<!--loop-->
-		<result-loop ng-repeat="result in results | filter: durationFilter()" result="result"></result-loop>
+		<result-loop ng-repeat="result in results | orderBy:'-from' | filter: durationFilter()" result="result"></result-loop>
 
 
 

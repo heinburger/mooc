@@ -33,7 +33,7 @@ angular.module('mooc')
 
 			return redditPromise.promise;	
 
-		}
+		};
 
 		
 

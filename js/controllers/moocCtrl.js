@@ -52,8 +52,10 @@ angular.module('mooc')
 		$scope.doSearch = function (text) {
 			$("#searchButton").html('<img src="loading.gif">');
 			agg.textSearch(text,{video:true}).then(function (response){
-				if (!response.length) { $scope.results = noResult; }
-				angular.copy(response, $scope.results);
+				var responses = _.without(response,undefined);
+				
+				if (!responses.length) { $scope.results = noResult; }
+				else { angular.copy(responses, $scope.results); }
 				$("#searchButton").html('<span class="glyphicon glyphicon-search"></span>');
 			});
 
