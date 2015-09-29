@@ -55,10 +55,21 @@
 	<script src="bower_components/angular-route/angular-route.min.js"></script>
 	<script src="bower_components/underscore/underscore-min.js"></script>
 	<script src="bower_components/moment/min/moment.min.js"></script>
+	<script>
+        function loadGapi(){
+        	var apiKey = 'AIzaSyBX89GYOcYYzMRuEyslYgqPXscPLrjsFlw';
+        	gapi.client.setApiKey(apiKey);
+        	gapi.client.load('youtube', 'v3').then(function() {
+				console.log('youtube ready...');
+			});
+    	}
+	</script>	
+	<script src="https://apis.google.com/js/client.js?onload=loadGapi"></script>
 	<script src="js/mooc.js"></script>
 	<script src="js/services/khanService.js"></script>
 	<script src="js/services/redditService.js"></script>
 	<script src="js/services/wikipediaService.js"></script>
+	<script src="js/services/youtubeService.js"></script>
 	<script src="js/services/aggregateService.js"></script>
 	<script src="js/controllers/moocCtrl.js"></script>
 	<script src="js/directives/resultDir.js"></script>

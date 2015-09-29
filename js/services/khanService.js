@@ -7,6 +7,7 @@ angular.module('mooc')
 
 		$http.get('http://www.khanacademy.org/api/v1/topictree').then(function (response){
 			khan.tree = response.data;
+			console.log('khan ready...');
 		});
 
 		khan.grabYoutubeInfo = function(id) {

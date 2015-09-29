@@ -1,6 +1,6 @@
 /*global angular */
 angular.module('mooc')
-	.factory('agg', function ($http, $q, khan, reddit, wikipedia) {
+	.factory('agg', function ($http, $q, khan, reddit, wikipedia, youtube) {
 		'use strict';
 
 		var agg = {};
@@ -11,6 +11,7 @@ angular.module('mooc')
 		agg.khan = khan;
 		agg.reddit = reddit;
 		agg.wikipedia = wikipedia;
+		agg.youtube = youtube;
 		
 		
 		agg.textSearch = function (rawText,options) {
