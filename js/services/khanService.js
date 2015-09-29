@@ -42,7 +42,7 @@ angular.module('mooc')
 						type:child.kind,
 						duration:false,
 						youtube:child.youtube_id,
-						rank:Math.random()*100
+						rank:Math.random()*100 + 1
 					};
 					if (child.thumbnail_urls) { formattedResult.thumb = child.thumbnail_urls.filtered; }
 

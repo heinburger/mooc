@@ -22,7 +22,7 @@ angular.module('mooc')
 				_(results).each(function (result){
 					var subReddit = {};
 					subReddit.from='reddit';
-					subReddit.rank=Math.random()*100;
+					subReddit.rank=Math.random()*100 + 1;
 					subReddit.title='/r/'+result.name;
 					subReddit.link='http://www.reddit.com/r/'+result.name;
 					subReddit.desc="a subreddit related to "+text;
