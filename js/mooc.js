@@ -1,6 +1,6 @@
 /*global angular */
 angular.module('mooc', ['ngRoute'])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $httpProvider) {
     'use strict';
 
     var routeConfig = {

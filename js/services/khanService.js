@@ -72,6 +72,8 @@ angular.module('mooc')
 				filterChildren(top);							
 			});
 
+			if (!promises.length) { khanPromise.resolve(); }
+
 			$q.all(promises).then(function(){
 				if (options.video) { khanPromise.resolve(videoResults); }
 				else { khanPromise.resolve(allResults); }

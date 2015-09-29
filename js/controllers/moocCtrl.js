@@ -9,7 +9,7 @@ angular.module('mooc')
 		
 		$scope.results = defaultResult;
 		//default services
-		agg.services = ['khan'];
+		agg.services = ['wikipedia','khan'];
 
 		$scope.addService = function (service) {
 			if (_(agg.services).contains(service)) {
@@ -38,7 +38,8 @@ angular.module('mooc')
 		});
 
 		$scope.durationFilter = function() {
-	        return function(item) {        
+	        return function(item) { 
+	        	if (!item) { return true; }       
 	        	if (!item.duration) { return true; }                  
 	            else if ( item.duration < agg.filterDuration) {                
 	                return true;

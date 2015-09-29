@@ -1,6 +1,6 @@
 /*global angular */
 angular.module('mooc')
-	.factory('agg', function ($http, $q, khan, reddit) {
+	.factory('agg', function ($http, $q, khan, reddit, wikipedia) {
 		'use strict';
 
 		var agg = {};
@@ -10,6 +10,7 @@ angular.module('mooc')
 		agg.filterDuration = 99999;
 		agg.khan = khan;
 		agg.reddit = reddit;
+		agg.wikipedia = wikipedia;
 		
 		
 		agg.textSearch = function (rawText,options) {
@@ -28,7 +29,7 @@ angular.module('mooc')
 				promises.push(servicePromise.promise);
 			});
 
-			
+
 			$q.all(promises).then(function (){
 				aggPromise.resolve(allResults);
 			});
