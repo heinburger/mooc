@@ -21,7 +21,9 @@ angular.module('mooc')
 				if(!results.length) { redditPromise.resolve(); }
 				_(results).each(function (result){
 					var subReddit = {};
-					subReddit.title="/r/"+result.name;
+					subReddit.from='reddit';
+					subReddit.rank=Math.random()*100;
+					subReddit.title='/r/'+result.name;
 					subReddit.link='http://www.reddit.com/r/'+result.name;
 					subReddit.desc="a subreddit related to "+text;
 

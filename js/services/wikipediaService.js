@@ -55,6 +55,7 @@ angular.module('mooc')
 							var formattedResult = {};
 							formattedResult.from='wikipedia';
 							formattedResult.title=page.title;
+							formattedResult.rank=1;
 							formattedResult.id=page.pageid;
 							if (pageid===''){ pageid = page.pageid; }
 							formattedResult.desc=page.extract;

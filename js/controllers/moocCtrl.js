@@ -9,7 +9,7 @@ angular.module('mooc')
 		
 		$scope.results = defaultResult;
 		//default services
-		agg.services = ['wikipedia','khan'];
+		agg.services = ['wikipedia','khan', 'reddit'];
 
 		$scope.addService = function (service) {
 			if (_(agg.services).contains(service)) {

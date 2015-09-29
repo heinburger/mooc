@@ -41,7 +41,8 @@ angular.module('mooc')
 						desc:child.description,
 						type:child.kind,
 						duration:false,
-						youtube:child.youtube_id
+						youtube:child.youtube_id,
+						rank:Math.random()*100
 					};
 					if (child.thumbnail_urls) { formattedResult.thumb = child.thumbnail_urls.filtered; }
 

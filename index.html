@@ -24,7 +24,7 @@
 		<div id="icons" class="row-fluid">
 			<img id="wikipedia" class="header-icon" src="https://en.wikipedia.org/static/images/project-logos/enwiki-2x.png" ng-click="addService('wikipedia')">
 			<img id="khan" class="header-icon" src="https://www.khanacademy.org/images/khan-logo-vertical-transparent.png" ng-click="addService('khan')">
-			<img id="reddit" class="header-icon grayscale" src="http://media2.fdncms.com/sfweekly/imager/reddits-new-employee-policy-is-harsh-but/u/original/3182964/reddit.png" ng-click="addService('reddit')">
+			<img id="reddit" class="header-icon" src="http://media2.fdncms.com/sfweekly/imager/reddits-new-employee-policy-is-harsh-but/u/original/3182964/reddit.png" ng-click="addService('reddit')">
 			<img id="youtube" class="header-icon grayscale" src="http://www.post.edu/careerservices/images/youtube-icon.png" ng-click="addService('youtube')">
 			<img id="ted" class="header-icon grayscale" src="http://freshwetpaint.com/wp-content/uploads/2010/03/ted.png" ng-click="addService('ted')">
 		</div>
@@ -39,7 +39,7 @@
 		</div>
 
 		<!--loop-->
-		<result-loop ng-repeat="result in results | orderBy:'-from' | filter: durationFilter()" result="result"></result-loop>
+		<result-loop ng-repeat="result in results | orderBy:'rank' | filter: durationFilter()" result="result"></result-loop>
 
 
 
