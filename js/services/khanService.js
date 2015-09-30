@@ -8,6 +8,7 @@ angular.module('mooc')
 		$http.get('http://www.khanacademy.org/api/v1/topictree').then(function (response){
 			khan.tree = response.data;
 			console.log('khan ready...');
+			$('#khan').removeClass('unloaded');
 		});
 
 		khan.grabYoutubeInfo = function(id) {
@@ -35,16 +36,16 @@ angular.module('mooc')
 				if (child.keywords)  { nodeText += child.keywords.toLowerCase(); }
 
 				if (nodeText.indexOf(text) != -1) { 
-					var formattedResult = {
-						//khan specific stuff
-						from:'khan',
-						title:child.title,
-						desc:child.description,
-						type:child.kind,
-						duration:false,
-						youtube:child.youtube_id,
-						rank:Math.random()*100 + 1
-					};
+					var formattedResult = {};
+						
+					formattedResult.from='khan';
+					formattedResult.title=child.title;
+					formattedResult.desc=child.description;
+					formattedResult.type=child.kind;
+					formattedResult.duration=false;
+					formattedResult.youtube=child.youtube_id;
+					formattedResult.rank=Math.random()*100 + 1;
+
 					if (child.thumbnail_urls) { formattedResult.thumb = child.thumbnail_urls.filtered; }
 
 					allResults.push(formattedResult);

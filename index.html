@@ -22,11 +22,12 @@
 
 		<!--header-->
 		<div id="icons" class="row-fluid">
-			<img id="wikipedia" class="header-icon" src="https://en.wikipedia.org/static/images/project-logos/enwiki-2x.png" ng-click="addService('wikipedia')">
-			<img id="khan" class="header-icon" src="https://www.khanacademy.org/images/khan-logo-vertical-transparent.png" ng-click="addService('khan')">
-			<img id="reddit" class="header-icon" src="http://media2.fdncms.com/sfweekly/imager/reddits-new-employee-policy-is-harsh-but/u/original/3182964/reddit.png" ng-click="addService('reddit')">
-			<img id="youtube" class="header-icon grayscale" src="http://www.post.edu/careerservices/images/youtube-icon.png" ng-click="addService('youtube')">
-			<img id="ted" class="header-icon grayscale" src="http://freshwetpaint.com/wp-content/uploads/2010/03/ted.png" ng-click="addService('ted')">
+			<img id="wikipedia" class="header-icon grayscale unloaded" ng-src="{{imgs.wikipedia}}" ng-click="addService('wikipedia')">
+			<img id="khan" class="header-icon grayscale unloaded" ng-src="{{imgs.khan}}" ng-click="addService('khan')">
+			<img id="reddit" class="header-icon grayscale unloaded" ng-src="{{imgs.reddit}}" ng-click="addService('reddit')">
+			<img id="youtube" class="header-icon grayscale unloaded" ng-src="{{imgs.youtube}}" ng-click="addService('youtube')">
+			<img id="ted" class="header-icon grayscale unloaded" ng-src="{{imgs.ted}}" ng-click="addService('ted')">
+			<img id="coursera" class="header-icon grayscale unloaded" ng-src="{{imgs.coursera}}" ng-click="addService('coursera')">
 		</div>
 		<div class="row">
 			<div class="input-group">
@@ -61,6 +62,7 @@
         	gapi.client.setApiKey(apiKey);
         	gapi.client.load('youtube', 'v3').then(function() {
 				console.log('youtube ready...');
+				$('#youtube').removeClass('unloaded');
 			});
     	}
 	</script>	
@@ -70,6 +72,7 @@
 	<script src="js/services/redditService.js"></script>
 	<script src="js/services/wikipediaService.js"></script>
 	<script src="js/services/youtubeService.js"></script>
+	<script src="js/services/courseraService.js"></script>
 	<script src="js/services/aggregateService.js"></script>
 	<script src="js/controllers/moocCtrl.js"></script>
 	<script src="js/directives/resultDir.js"></script>

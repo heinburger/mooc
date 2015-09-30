@@ -4,6 +4,8 @@ angular.module('mooc')
 		'use strict';
 
 		var wikipedia = {};	
+		$('#wikipedia').removeClass('unloaded');
+
 		var pageid='';
 
 		wikipedia.grabUrl = function (id) {

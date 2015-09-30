@@ -1,6 +1,6 @@
 /*global angular */
 angular.module('mooc')
-	.factory('agg', function ($http, $q, khan, reddit, wikipedia, youtube) {
+	.factory('agg', function ($http, $q, khan, reddit, wikipedia, youtube, coursera) {
 		'use strict';
 
 		var agg = {};
@@ -12,6 +12,7 @@ angular.module('mooc')
 		agg.reddit = reddit;
 		agg.wikipedia = wikipedia;
 		agg.youtube = youtube;
+		agg.coursera = coursera
 		
 		
 		agg.textSearch = function (rawText,options) {
@@ -32,7 +33,9 @@ angular.module('mooc')
 
 
 			$q.all(promises).then(function (){
-				aggPromise.resolve(allResults);
+				var removedUndefines = _.without(allResults,undefined);
+				var removedDupes = _.uniq(removedUndefines,function(item){ return item.title + item.desc; });
+				aggPromise.resolve(removedDupes);
 			});
 
 			return aggPromise.promise;
