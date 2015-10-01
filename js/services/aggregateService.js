@@ -1,12 +1,13 @@
 /*global angular */
 angular.module('mooc')
-	.factory('agg', function ($http, $q, khan, reddit, wikipedia, youtube, coursera, edx) {
+	.factory('agg', function ($http, $q, khan, reddit, wikipedia, youtube, coursera, edx, twitter) {
 		'use strict';
 
 		var agg = {};
 
 		agg.services = [];
-		agg.availableServices = ['wikipedia','khan','reddit','youtube','coursera','edx'];
+		//services - determines the order
+		agg.availableServices = ['wikipedia','khan','reddit','youtube','coursera','edx','twitter'];
 
 		agg.filterDuration = 99999;
 		agg.khan = khan;
@@ -15,6 +16,7 @@ angular.module('mooc')
 		agg.youtube = youtube;
 		agg.coursera = coursera;
 		agg.edx = edx;
+		agg.twitter = twitter;
 		
 		
 		agg.textSearch = function (rawText,options) {
