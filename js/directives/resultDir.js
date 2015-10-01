@@ -1,6 +1,6 @@
 /*global angular */
 angular.module('mooc')
-	.directive('resultLoop', function ($http, agg, khan) {
+	.directive('resultLoop', function ($http) {
 		'use strict';
 
 		return {

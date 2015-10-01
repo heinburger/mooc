@@ -1,27 +1,26 @@
 /*global angular */
 angular.module('mooc')
-	.factory('coursera', function ($http, $q) {
+	.factory('edx', function ($http, $q) {
 		'use strict';
 
-		var coursera = {};	
+		var edx = {};
 
-		coursera.initialize = function() {
-			var initPromise = $q.defer();
-			$http.get('https://api.coursera.org/api/catalog.v1/courses?fields=shortDescription,photo,video,categories,sessions').then(function (response){
-				coursera.tree = response.data.elements;
-				console.log('coursera ready...');
-				$('#coursera').removeClass('unloaded');
-				initPromise.resolve('coursera');
+		edx.initialize = function() {
+			$http.get('http://www.mobile3.m.sandbox.edx.org/api/course_structure/v0/courses/').then(function (response){
+				edx.tree = response;
+				console.log('edx ready...');
+				console.log(edx.tree);
+				//$('#edx').removeClass('unsloaded');
 			});
-			return initPromise.promise;
-		};
-		
-		coursera.textSearch = function(text, options) {
-			var courseraPromise = $q.defer();
+		};	
+
+		edx.textSearch = function(text, options) {
+			var edxPromise = $q.defer();
 			var promises = [];
 			var allResults = [];
 
-			console.log('coursera service');
+			/*
+			console.log('edx service');
 			_(coursera.tree).each(function (child){
 				var nodeText = '';
 				//assemble the string to search over:
@@ -43,15 +42,16 @@ angular.module('mooc')
 				}
 
 			});
+			*/
 			
 			$q.all(promises).then(function(){
-				courseraPromise.resolve(allResults);
+				edxPromise.resolve(allResults);
 			});			
 
-			return courseraPromise.promise;
+			return edxPromise.promise;
 		};
 
 		//end service
-		return coursera;
+		return edx;
 	});
 

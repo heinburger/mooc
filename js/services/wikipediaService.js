@@ -4,9 +4,14 @@ angular.module('mooc')
 		'use strict';
 
 		var wikipedia = {};	
-		$('#wikipedia').removeClass('unloaded');
-
 		var pageid='';
+
+		wikipedia.initialize = function() {
+			var initPromise = $q.defer();
+			$('#wikipedia').removeClass('unloaded');
+			initPromise.resolve('wikipedia');
+			return initPromise.promise;
+		};
 
 		wikipedia.grabUrl = function (id) {
 			//maybe later - using the easy one for now....

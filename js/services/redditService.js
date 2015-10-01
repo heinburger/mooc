@@ -4,7 +4,13 @@ angular.module('mooc')
 		'use strict';
 
 		var reddit = {};
-		$('#reddit').removeClass('unloaded');	
+
+		reddit.initialize = function() {
+			var initPromise = $q.defer();
+			$('#reddit').removeClass('unloaded');
+			initPromise.resolve('reddit');
+			return initPromise.promise;
+		};	
 
 		reddit.textSearch = function (text, options){
 			var redditPromise = $q.defer();

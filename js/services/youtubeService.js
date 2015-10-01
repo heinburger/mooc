@@ -3,7 +3,11 @@ angular.module('mooc')
 	.factory('youtube', function ($http, $q) {
 		'use strict';
 
-		var youtube = {};	
+		var youtube = {};
+
+		youtube.initialize = function() {
+			//not working
+		};	
 
 		youtube.textSearch = function (text, options){
 			var youtubePromise = $q.defer();

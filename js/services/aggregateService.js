@@ -1,18 +1,20 @@
 /*global angular */
 angular.module('mooc')
-	.factory('agg', function ($http, $q, khan, reddit, wikipedia, youtube, coursera) {
+	.factory('agg', function ($http, $q, khan, reddit, wikipedia, youtube, coursera, edx) {
 		'use strict';
 
 		var agg = {};
 
 		agg.services = [];
+		agg.availableServices = ['wikipedia','khan','reddit','youtube','coursera','edx'];
 
 		agg.filterDuration = 99999;
 		agg.khan = khan;
 		agg.reddit = reddit;
 		agg.wikipedia = wikipedia;
 		agg.youtube = youtube;
-		agg.coursera = coursera
+		agg.coursera = coursera;
+		agg.edx = edx;
 		
 		
 		agg.textSearch = function (rawText,options) {

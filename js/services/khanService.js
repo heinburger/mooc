@@ -5,12 +5,17 @@ angular.module('mooc')
 
 		var khan = {};	
 
-		$http.get('http://www.khanacademy.org/api/v1/topictree').then(function (response){
-			khan.tree = response.data;
-			console.log('khan ready...');
-			$('#khan').removeClass('unloaded');
-		});
-
+		khan.initialize = function() {
+			var initPromise = $q.defer();
+			$http.get('http://www.khanacademy.org/api/v1/topictree').then(function (response){
+				khan.tree = response.data;
+				console.log('khan ready...');
+				$('#khan').removeClass('unloaded');
+				initPromise.resolve('khan');
+			});
+			return initPromise.promise;
+		};
+		
 		khan.grabYoutubeInfo = function(id) {
 			return $http.get('http://www.khanacademy.org/api/v1/videos/'+id).then(function (response){
 				return {url:response.data.url, duration:response.data.duration };
