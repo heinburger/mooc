@@ -5,6 +5,8 @@ var r = require('rethinkdb');
 
 var config = require(__dirname + '/config.js');
 
+var google = require('googleapis');
+
 var app = express();
 
 
@@ -146,7 +148,6 @@ function startExpress(connection) {
 
 /*
  * Connect to rethinkdb, create the needed tables/indexes and then start express.
- * Create tables/indexes then start express
  */
 async.waterfall([
   function connect(callback) {

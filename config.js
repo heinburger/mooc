@@ -7,5 +7,13 @@ module.exports = {
   },
   express: {
      port: 3001
+  },
+  api: {
+  	google: {
+  		key: 'AIzaSyBX89GYOcYYzMRuEyslYgqPXscPLrjsFlw'
+  	},
+  	twitter: {
+
+  	}
   }
 };
