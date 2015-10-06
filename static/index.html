@@ -19,7 +19,7 @@
 		<div id="icons" class="row-fluid">
 			<a ng-repeat="service in availableServices" service="service" imgs="imgs" id="{{service}}A" class="serviceA" ng-click="addService(service)">
 				<img ng-hide="hiding[service]" id="{{service}}" class="header-icon grayscale unloaded" ng-src="{{imgs[service]}}">
-				<img ng-if="hiding[service]" class='header-loading' src="loading.gif">
+				<img ng-if="hiding[service]" class='header-loading' src="img/loading.gif">
 			</a>
 		</div>
 		<div class="row">

@@ -77,7 +77,7 @@ angular.module('mooc')
 	    };
 
 		$scope.doSearch = function (text) {
-			$("#searchButton").html('<img src="loading.gif">');
+			$("#searchButton").html('<img src="img/loading.gif">');
 			agg.textSearch(text,{video:true}).then(function (response){
 				if (!response.length) { $scope.results = noResult; }
 				else { 
