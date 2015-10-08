@@ -1,6 +1,6 @@
 /*global angular */
 angular.module('mooc')
-	.directive('resultLoop', function ($http) {
+	.directive('resultLoop', function ($http, rethink) {
 		'use strict';
 
 		return {
@@ -14,7 +14,19 @@ angular.module('mooc')
 		    		var minutes = Math.floor(duration/60);
 		    		var seconds = duration - minutes * 60;
 		    		return minutes+"m";
-		    	}
+		    	};
+
+		    	scope.create = function(line) {
+		    		rethink.create(line).then(function(newLine){
+		    			console.log(newLine);
+		    		})
+		    	};
+
+		    	scope.list = function(){
+		    		rethink.get().then(function(lines){
+		    			console.log(lines);
+		    		});
+		    	};
 		    }
 		};
 	});

@@ -2,13 +2,13 @@ var async = require('async');
 var express = require('express');
 var bodyParser = require('body-parser');
 var r = require('rethinkdb');
+var moment = require('moment')
 
 var config = require(__dirname + '/config.js');
 
 var google = require('googleapis');
 
 var app = express();
-
 
 //For serving the index.html and all the other front-end assets.
 app.use(express.static(__dirname + '/static'));
@@ -57,7 +57,7 @@ function listLines(req, res, next) {
  */
 function createLine(req, res, next) {
   var line = req.body;
-  line.createdAt = r.now();
+  line.createdAt = moment.utc().format();
 
   console.dir(line);
 
@@ -66,7 +66,7 @@ function createLine(req, res, next) {
       return next(err);
     }
 
-    res.json(result.changes[0].new_val);
+    res.json(result.changes);
   });
 }
 

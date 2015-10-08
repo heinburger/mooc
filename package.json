@@ -6,6 +6,7 @@
     "body-parser": "1.12.3",
     "express": "4.12.3",
     "rethinkdb": "2.0.0",
+    "moment": "*",
     "googleapis": "2.1"
   }
 }
