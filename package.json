@@ -4,9 +4,14 @@
   "dependencies": {
     "async": "0.9.0",
     "body-parser": "1.12.3",
+    "cookie-parser": "^1.4.0",
+    "everyauth": "^0.4.9",
     "express": "4.12.3",
-    "rethinkdb": "2.0.0",
+    "express-session": "^1.11.3",
+    "freebase": "^3.1.2",
+    "glossary": "^0.1.1",
+    "googleapis": "2.1",
     "moment": "*",
-    "googleapis": "2.1"
+    "rethinkdb": "2.0.0"
   }
 }

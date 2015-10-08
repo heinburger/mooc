@@ -1,19 +1,25 @@
 var async = require('async');
 var express = require('express');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var r = require('rethinkdb');
 var moment = require('moment')
+var session = require('express-session');
+
+var google = require('googleapis');
+var everyauth = require('everyauth');
+var freebase = require('freebase');
+var glossary = require('glossary');
 
 var config = require(__dirname + '/config.js');
 
-var google = require('googleapis');
-
 var app = express();
-
 //For serving the index.html and all the other front-end assets.
 app.use(express.static(__dirname + '/static'));
 
 app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(session({secret:'catdogdogcatcat', cookie:{maxAge:60000}}));
 
 //The REST routes for lines.
 app.route('/lines')
@@ -116,25 +122,20 @@ function deleteLine(req, res, next) {
   });
 }
 
-/*
- * Page-not-found middleware.
- */
+//Page-not-found middleware.
 function handle404(req, res, next) {
   res.status(404).end('not found');
 }
 
-/*
- * Generic error handling middleware.
- * Send back a 500 page and log the error to the console.
- */
+//generic error handling middleware.
 function handleError(err, req, res, next) {
-  console.error(err.stack);
+  console.error(err.stack); 
+  //send back a 500 page and log the error to the console.
   res.status(500).json({err: err.message});
 }
 
-/*
- * Store the db connection and start listening on a port.
- */
+
+//store the db connection and start listening on a port.
 function startExpress(connection) {
   app._rdbConn = connection;
   app.listen(config.express.port);
@@ -142,13 +143,7 @@ function startExpress(connection) {
 }
 
 
-
-
-
-
-/*
- * Connect to rethinkdb, create the needed tables/indexes and then start express.
- */
+//connect to rethinkdb, create the needed tables/indexes and then start express.
 async.waterfall([
   function connect(callback) {
     r.connect(config.rethinkdb, callback);
